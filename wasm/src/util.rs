@@ -223,7 +223,7 @@ pub fn gen(seed: u64) -> Input {
         let p = (rng.gen_range(-100000..=100000), rng.gen_range(-100000..=100000));
         if ps.iter()
             .chain(std::iter::once(&s))
-            .any(|&(x0, y0)| (p.0 - x0).pow(2) + (p.1 - y0).pow(2) <= 5000 * 5000)
+            .any(|&(x0, y0)| (p.0 - x0) * (p.0 - x0) + (p.1 - y0) * (p.1 - y0) <= 5000 * 5000)
         {
             continue;
         }
@@ -629,7 +629,7 @@ pub fn vis(input: &Input, output: &Output, turn: usize) -> (i64, String, String)
 
     // スコア表示
     doc = doc.add(
-        Text::new()
+        Text::new("")
             .set("x", 20)
             .set("y", 20)
             .set("fill", "black")
